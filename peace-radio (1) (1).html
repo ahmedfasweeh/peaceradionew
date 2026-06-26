@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peace Radio — Reminder Sign-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald:#00A37A;
+    --pine:#04604A;
+    --pine-deep:#034736;
+    --mist:#E8F5F0;
+    --ink:#0C2A22;
+    --paper:#FCFEFD;
+    --sand:#D8B25E;
+    --line:#D7E8E1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    min-height:100vh;
+  }
+  .shell{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    min-height:100vh;
+  }
+
+  /* ---------- HERO / BROADCAST PANEL ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 120% at 18% 12%, var(--pine) 0%, var(--pine-deep) 70%);
+    color:#fff;
+    padding:56px 52px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+  }
+  /* radiating broadcast waves */
+  .waves{
+    position:absolute;
+    top:92px; left:88px;
+    width:1px; height:1px;
+    pointer-events:none;
+  }
+  .waves span{
+    position:absolute;
+    top:50%; left:50%;
+    border:2px solid rgba(255,255,255,.16);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    animation:pulse 4s ease-out infinite;
+  }
+  .waves span:nth-child(1){width:170px;height:170px;animation-delay:0s}
+  .waves span:nth-child(2){width:170px;height:170px;animation-delay:1.3s}
+  .waves span:nth-child(3){width:170px;height:170px;animation-delay:2.6s}
+  @keyframes pulse{
+    0%{width:150px;height:150px;opacity:.55}
+    100%{width:620px;height:620px;opacity:0}
+  }
+
+  .brandrow{position:relative;z-index:2;display:flex;align-items:center;gap:18px}
+  .brandlogo{position:relative;z-index:2;display:inline-block}
+  .brandlogo img{width:248px;max-width:64vw;height:auto;display:block}
+  .region{
+    position:relative;z-index:2;
+    font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(255,255,255,.62);margin-top:14px;
+  }
+
+  .onair{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:9px;
+    align-self:flex-start;
+    margin-top:22px;
+    padding:7px 14px 7px 11px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+  }
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--sand);animation:blink 1.8s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .pitch{position:relative;z-index:2;max-width:420px}
+  .pitch h1{
+    font-size:clamp(30px,4vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+    margin-bottom:18px;
+  }
+  .pitch p{font-size:16px;color:rgba(255,255,255,.82);line-height:1.65}
+  .arabic{
+    font-family:'Amiri',serif;
+    font-size:24px;
+    color:rgba(255,255,255,.92);
+    margin-top:26px;
+    direction:rtl;
+  }
+  .arabic small{display:block;font-family:'Plus Jakarta Sans';font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.04em;margin-top:6px;direction:ltr}
+
+  /* ---------- FORM SIDE ---------- */
+  .formside{
+    padding:56px 52px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .formwrap{width:100%;max-width:430px;margin:0 auto}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald)}
+  .formwrap h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px}
+  .formwrap .lede{font-size:14.5px;color:#5a6f68;margin-bottom:28px}
+
+  .field{margin-bottom:18px}
+  label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:var(--ink)}
+  label .req{color:var(--emerald)}
+  input,select{
+    width:100%;
+    font-family:inherit;font-size:15px;color:var(--ink);
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:11px;
+    padding:13px 14px;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2304604A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+  input:focus,select:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 4px rgba(0,163,122,.12)}
+  input::placeholder{color:#9bb0a8}
+  .err{display:none;font-size:12.5px;color:#c0392b;margin-top:6px;font-weight:500}
+  .field.invalid input,.field.invalid select{border-color:#e07a6e}
+  .field.invalid .err{display:block}
+
+  button.submit{
+    width:100%;
+    font-family:inherit;font-size:15.5px;font-weight:700;
+    color:#fff;background:var(--emerald);
+    border:none;border-radius:12px;
+    padding:15px;cursor:pointer;
+    transition:background .15s, transform .05s;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  button.submit:hover{background:#00916d}
+  button.submit:active{transform:translateY(1px)}
+  button.submit:disabled{background:#9fcdbf;cursor:not-allowed}
+  .spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .foot{font-size:12px;color:#8aa099;text-align:center;margin-top:18px;line-height:1.6}
+
+  /* success state */
+  .done{display:none;text-align:center;padding:20px 0}
+  .done .check{width:64px;height:64px;border-radius:50%;background:var(--mist);display:grid;place-items:center;margin:0 auto 20px}
+  .done h2{font-size:24px;font-weight:800;margin-bottom:10px}
+  .done p{font-size:14.5px;color:#5a6f68;max-width:330px;margin:0 auto}
+  .done .arabic2{font-family:'Amiri',serif;font-size:22px;color:var(--emerald);margin-top:20px;direction:rtl}
+
+  @media (max-width:860px){
+    .shell{grid-template-columns:1fr}
+    .hero{padding:40px 28px 48px}
+    .pitch{margin-top:34px;max-width:none}
+    .formside{padding:40px 24px 56px}
+    .waves{top:76px;left:58px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .waves span,.dot,.spinner{animation:none}
+    .waves span{opacity:.18;width:320px;height:320px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="waves" aria-hidden="true"><span></span><span></span><span></span></div>
+
+    <div>
+      <a class="brandlogo" href="https://peaceradio.com/" target="_blank" rel="noopener">
+        <img src="data:image/png;base64,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" alt="Peace Radio — Tune to reality">
+      </a>
+      <div class="region">Riyadh Region</div>
+      <div class="onair"><span class="dot"></span> On Air · Live Da'wah</div>
+    </div>
+
+    <div class="pitch">
+      <h1>Never miss a reminder.</h1>
+      <p>Peace Radio brings Islamic preaching and live programs to you over internet radio. Sign up and we'll send reminders for upcoming lectures, broadcasts, and station updates in your area of Riyadh.</p>
+      <div class="arabic">وَذَكِّرْ فَإِنَّ ٱلذِّكْرَىٰ تَنفَعُ ٱلْمُؤْمِنِينَ
+        <small>"And remind, for indeed the reminder benefits the believers." — Adh-Dhariyat 51:55</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="formside">
+    <div class="formwrap">
+      <div id="formView">
+        <div class="eyebrow">Reminder Sign-up</div>
+        <h2>Join the list</h2>
+        <p class="lede">Takes less than a minute. We only use your details to send you reminders.</p>
+
+        <div class="field" id="f-name">
+          <label>Name <span class="req">*</span></label>
+          <input type="text" id="name" placeholder="Your full name" autocomplete="name">
+          <div class="err">Please enter your name.</div>
+        </div>
+
+        <div class="field" id="f-phone">
+          <label>Phone number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="05XXXXXXXX or +9665XXXXXXXX" autocomplete="tel" inputmode="tel">
+          <div class="err">Enter a valid Saudi mobile number.</div>
+        </div>
+
+        <div class="field" id="f-email">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" inputmode="email">
+          <div class="err">Enter a valid email address.</div>
+        </div>
+
+        <div class="field" id="f-zone">
+          <label>Zone in Riyadh <span class="req">*</span></label>
+          <select id="zone">
+            <option value="" disabled selected>Select your area</option>
+            <option>North Riyadh</option>
+            <option>South Riyadh</option>
+            <option>East Riyadh</option>
+            <option>West Riyadh</option>
+            <option>Central Riyadh</option>
+          </select>
+          <div class="err">Please choose your zone.</div>
+        </div>
+
+        <button class="submit" id="submitBtn">
+          <span class="spinner" id="spin"></span>
+          <span id="btnText">Subscribe to reminders</span>
+        </button>
+        <p class="foot">Your information stays private and is used only by Peace Radio.</p>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="done" id="doneView">
+        <div class="check">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#00A37A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>You're subscribed</h2>
+        <p>Thank you for joining Peace Radio. You'll start receiving reminders for programs in your area, in shā’ Allāh.</p>
+        <div class="arabic2">جَزَاكُمُ ٱللَّهُ خَيْرًا</div>
+        <a href="https://peaceradio.com/" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;color:#00A37A;font-weight:600;font-size:14px;text-decoration:none">Listen live at peaceradio.com →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // ===================================================================
+  //  PASTE YOUR APPS SCRIPT WEB APP URL BETWEEN THE QUOTES BELOW.
+  //  (You get this URL when you Deploy the script as a Web App.)
+  // ===================================================================
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPP_RXE1owMva4Ybu6O_cExhrsS-aFEGK6sFohmorlM1zY97NLItVS8NI-zZzjksW0Cg/exec";
+
+  const $ = id => document.getElementById(id);
+  const saudiPhone = /^(\+9665|05)[0-9]{8}$/;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setInvalid(fieldId, bad){ $(fieldId).classList.toggle('invalid', bad); }
+
+  function validate(){
+    const name = $('name').value.trim();
+    const phone = $('phone').value.trim().replace(/\s/g,'');
+    const email = $('email').value.trim();
+    const zone = $('zone').value;
+
+    let ok = true;
+    setInvalid('f-name', !name); if(!name) ok=false;
+    setInvalid('f-phone', !saudiPhone.test(phone)); if(!saudiPhone.test(phone)) ok=false;
+    setInvalid('f-email', !emailRe.test(email)); if(!emailRe.test(email)) ok=false;
+    setInvalid('f-zone', !zone); if(!zone) ok=false;
+
+    return ok ? {name, phone, email, zone} : null;
+  }
+
+  async function submitForm(){
+    const data = validate();
+    if(!data) return;
+
+    const btn = $('submitBtn');
+    btn.disabled = true;
+    $('spin').style.display = 'inline-block';
+    $('btnText').textContent = 'Submitting…';
+
+    try{
+      if(SCRIPT_URL.startsWith('PASTE')) throw new Error('Web App URL not set yet.');
+
+      const body = new URLSearchParams(data);
+      // no-cors lets the form post reliably from any domain (incl. peaceradio.com)
+      await fetch(SCRIPT_URL, {
+        method:'POST',
+        mode:'no-cors',
+        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
+        body
+      });
+
+      $('formView').style.display = 'none';
+      $('doneView').style.display = 'block';
+    }catch(err){
+      btn.disabled = false;
+      $('spin').style.display = 'none';
+      $('btnText').textContent = 'Subscribe to reminders';
+      alert('Sorry, something went wrong: ' + err.message + '\nPlease try again.');
+    }
+  }
+
+  $('submitBtn').addEventListener('click', submitForm);
+  // live-clear errors as the user fixes them
+  ['name','phone','email','zone'].forEach(id=>{
+    $(id).addEventListener('input', ()=> $('f-'+id).classList.remove('invalid'));
+  });
+</script>
+</body>
+</html>
